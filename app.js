@@ -142,14 +142,9 @@ app.get("/auth-endpoint", auth, (request, response) => {
 });
 
 // users endpoint
-app.get("/users", async  (request, response) => {
-  response.send('u');
-});
-
-app.post("/users", async (request, response) => {
-  console.log('users post')
-  const users = await Users.find({}, 'email name');
-  response.send(users);
+app.get("/users", async (request, response) => {
+  const users = await Users.find({}, 'email');
+  response.status(201).send(users);
 });
 
 module.exports = app;
